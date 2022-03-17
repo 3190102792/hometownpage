@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+ <style type="text/css">
+ body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+ </style>
+ <script type="text/javascript" src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=e2uznoBulGrDR3siilue3vfUqzNBQSsB"></script>
+ <title>计网作业 陈诺 3190102792</title>
+</head>
+<body>
+ <div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+
+   // 百度地图API功能
+ var map = new BMapGL.Map("allmap");    // 创建Map实例
+ map.centerAndZoom(new BMapGL.Point(119.28121,29.47475 ), 11);  // 初始化地图,设置中心点坐标和地图级别
+ map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+          var point = new BMapGL.Point(119.28121,29.47475);
+ var marker = new BMapGL.Marker(point);  // 创建标注
+ map.addOverlay(marker);              // 将标注添加到地图中
+
+          var sContent =  
+"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>浙江省建德市</h4>" +   
+"<img style='float:right;margin:4px' id='imgDemo' src='新安江的搜索结果_百度图片搜索 (baidu.com)' width='200' height='104' title='新安江'/>" +   
+"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>新安江，古称渐江、浙江， [1]  又称徽港，钱塘江水系干流上游段，发源于安徽徽州（今黄山市）休宁县境内，东入浙江省西部，经淳安至建德与兰江汇合后为钱塘江干流桐江段、富春江段，东北流入钱塘江，是钱塘江正源。干流长373公里，流域面积1.1万多平方公里。</p >" +  "<a style='color:#87CEFA;text-decoration:none;' href=' '>更多信息见新安江百度百科</ a>" 
+"</div>";  
+  
+ var infoWindow = new BMapGL.InfoWindow(sContent);     // marker添加点击事件
+ marker.addEventListener('click', function () {
+      this.openInfoWindow(infoWindow);             
+   // 图片加载完毕重绘infoWindow
+      document.getElementById('imgDemo').onload = function () {
+           infoWindow.redraw(); // 防止在网速较慢时生成的信息框高度比图片总高度小，导致图片部分被隐藏
+    };
+});
+</script>
